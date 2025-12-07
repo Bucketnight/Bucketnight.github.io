@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Yep I'm Bucket</title>
+  <style>
+    :root{
+      --sun: #fff9b1;
+      --accent: #ffd66b;
+      --muted: #6b5b3b;
+      --card: rgba(255,255,255,0.9);
+      --glass: rgba(255,255,255,0.55);
+      --shadow: 0 8px 24px rgba(0,0,0,0.08);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%;}
+    body{
+      margin:0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background: radial-gradient(circle at 10% 10%, rgba(255,255,255,0.6) 0%, transparent 20%), var(--sun);
+      color:var(--muted);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      overflow-x:hidden;
+      position:relative;
+      min-height:100vh;
+    }
+
+    /* Stars container */
+    .stars{
+      position:fixed;
+      inset:0;
+      pointer-events:none;
+      z-index:0;
+      overflow:hidden;
+    }
+    .star{
+      position:absolute;
+      width:8px;
+      height:8px;
+      transform-origin:center;
+      filter:drop-shadow(0 2px 4px rgba(0,0,0,0.08));
+      opacity:0.95;
+      will-change:transform, opacity;
+      animation:twinkle 3s infinite ease-in-out both;
+    }
+
+    .star svg{width:100%;height:100%;display:block}
+
+    @keyframes twinkle{
+      0%{transform: translateY(0) rotate(0) scale(0.9)}
+      50%{transform: translateY(-6px) rotate(6deg) scale(1.05)}
+      100%{transform: translateY(0) rotate(0) scale(0.95)}
+    }
+
+    /* gentle shaking of the whole starfield */
+    .stars{animation:stars-shake 8s ease-in-out infinite}
+    @keyframes stars-shake{
+      0%{transform: translateX(0) translateY(0) rotate(0)}
+      25%{transform: translateX(-3px) translateY(1px) rotate(-0.2deg)}
+      50%{transform: translateX(0) translateY(0) rotate(0)}
+      75%{transform: translateX(2px) translateY(-1px) rotate(0.2deg)}
+      100%{transform: translateX(0) translateY(0) rotate(0)}
+    }
+
+    header{
+      position:relative;
+      z-index:2;
+      padding:3.5rem 1.25rem;
+      text-align:center;
+    }
+    .brand{
+      display:inline-flex;
+      gap:1rem;
+      align-items:center;
+    }
+    .avatar{
+      width:86px;height:86px;border-radius:18px;background:linear-gradient(180deg,var(--accent),#fff);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:28px;box-shadow:var(--shadow);
+    }
+    h1{margin:0;font-size:clamp(1.25rem,2.8vw,2.2rem);letter-spacing:0.4px}
+    p.lead{margin:6px 0 0;color:rgba(107,91,59,0.9)}
+
+    main{position:relative;z-index:2;max-width:1100px;margin:1.25rem auto;padding:1rem}
+    .grid{display:grid;grid-template-columns:1fr 360px;gap:1.25rem}
+    @media (max-width:920px){.grid{grid-template-columns:1fr}}
+
+    .card{
+      background:var(--card);
+      border-radius:16px;
+      padding:1.25rem;
+      box-shadow:var(--shadow);
+      backdrop-filter: blur(6px) saturate(1.1);
+    }
+
+    .about .tag{display:inline-block;background:var(--glass);padding:6px 10px;border-radius:999px;font-size:0.85rem;margin-right:0.5rem}
+
+    .projects{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-top:1rem}
+    .project{
+      border-radius:12px;padding:12px;background:linear-gradient(180deg, rgba(255,255,255,0.95), rgba(255,250,230,0.95));box-shadow:0 6px 18px rgba(0,0,0,0.06);transition:transform 300ms ease, box-shadow 300ms ease;
+    }
+    .project:hover{transform:translateY(-6px);box-shadow:0 12px 30px rgba(0,0,0,0.09)}
+    .project h3{margin:0 0 6px}
+    .project p{margin:0;font-size:0.95rem;color:rgba(107,91,59,0.95)}
+
+    /* Right column */
+    .meta .contact{display:flex;flex-direction:column;gap:8px}
+    .pill{display:inline-block;padding:8px 12px;border-radius:999px;background:var(--accent);font-weight:600}
+
+    footer{margin-top:1.25rem;text-align:center;color:rgba(107,91,59,0.8);font-size:0.95rem}
+
+    /* small cute footer star */
+    .footer-star{display:inline-block;vertical-align:middle;width:18px;height:18px;margin-right:8px}
+
+    /* tiny helpers */
+    a{color:inherit;text-decoration:none}
+    .btn{display:inline-block;padding:10px 14px;border-radius:10px;background:#fff7e0;box-shadow:0 6px 18px rgba(0,0,0,0.06);font-weight:600}
+  </style>
+</head>
+<body>
+
+  <div class="stars" aria-hidden="true"></div>
+
+  <header>
+    <div class="brand">
+      <div class="avatar">bn</div>
+      <div style="text-align:left">
+        <h1>Bucket</h1>
+        <p class="lead">This is where i keep my basment.</p>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="grid">
+      <section class="card about">
+        <div style="display:flex;justify-content:space-between;align-items:center;gap:12px">
+          <div>
+            <div class="tag">AHHHHH</div>
+            <div class="tag">I Use Arch btw.</div>
+            <div class="tag">dih</div>
+          </div>
+          <div><span class="pill">NOT Available</span></div>
+        </div>
+
+        <h2 style="margin-top:14px">About me</h2>
+        <p>Roblox stuffs. Developings...</p>
+
+        <h3 style="margin-top:14px">NOT Featured projects</h3>
+        <div class="projects">
+          <article class="project">
+            <h3>Bootloader (somehow)</h3>
+            <p>Written in assembly. (hard asf)</p>
+          </article>
+          <article class="project">
+            <h3>Hypervisor</h3>
+            <p>STILL IN CONSTRUCTION!</p>
+          </article>
+          <article class="project">
+            <h3>InfiniteOS</h3>
+            <p>I was wondering that my codes was corrupted :D</p>
+          </article>
+        </div>
+
+        <div style="margin-top:14px;display:flex;gap:10px;align-items:center">
+          <a class="btn" href="#contact">👋</a>
+        </div>
+      </section>
+
+      <aside class="card meta">
+        <h3 id="contact">Contact</h3>
+        <div class="contact">
+          <div>📧 <strong>email (maybe a little akward)</strong> — huynhhuu254@gmail.com</div>
+          <div>🐙 <strong>github</strong> — github.com/bucketnight</div>
+        </div>
+
+        <h4 style="margin-top:12px">Skills</h4>
+        <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:6px">
+          <span class="tag">why does it have to be me?</span>
+          <span class="tag">sigma</span>
+          <span class="tag">tung tung tung sahur</span>
+          <span class="tag">":)"</span>
+          <span class="tag">Developing an OS btw.</span>
+        </div>
+
+        <footer style="margin-top:18px">
+          <svg class="footer-star" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l2.6 5.3L20 9l-4 3.6L17 20l-5-2.8L7 20l1-7.4L4 9l5.4-1.7L12 2z" fill="#FFD66B"/></svg>
+          Made by Bucketnight (and a spice of GPT himself)
+        </footer>
+      </aside>
+    </div>
+  </main>
+
+  <script>
+    // generate cute stars with slight random positions and staggered animations
+    const starCount = 32;
+    const container = document.querySelector('.stars');
+    for(let i=0;i<starCount;i++){
+      const el = document.createElement('div');
+      el.className = 'star';
+      const size = Math.round(6 + Math.random()*10);
+      el.style.width = size + 'px';
+      el.style.height = size + 'px';
+      el.style.left = Math.random()*110 + '%';
+      el.style.top = Math.random()*105 + '%';
+      el.style.opacity = 0.6 + Math.random()*0.4;
+      el.style.transform = `translateZ(0) scale(${0.7 + Math.random()*0.9})`;
+      // stagger animation durations/delays for organic motion
+      const dur = 2.5 + Math.random()*3.5;
+      const delay = Math.random()*2;
+      el.style.animationDuration = dur + 's';
+      el.style.animationDelay = delay + 's';
+      // svg star
+      el.innerHTML = `
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l2.6 5.3L20 9l-4 3.6L17 20l-5-2.8L7 20l1-7.4L4 9l5.4-1.7L12 2z" fill="#FFD66B"/></svg>`;
+      container.appendChild(el);
+    }
+  </script>
+</body>
+</html>
