@@ -5,10 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Bucketnight / bucketkernel</title>
   <style>
-    :root {
-      --bg:#0d1117;--panel:#161b22;--border:#30363d;
-      --text:#c9d1d9;--muted:#8b949e;--accent:#58a6ff;--green:#3fb950;
-    }
+    :root{--bg:#0d1117;--panel:#161b22;--border:#30363d;--text:#c9d1d9;--muted:#8b949e;--accent:#58a6ff;--green:#3fb950;--warn:#d29922;--error:#f85149}
     *{box-sizing:border-box}
     body{margin:0;font-family:ui-monospace,monospace;background:var(--bg);color:var(--text)}
     header{background:var(--panel);border-bottom:1px solid var(--border);padding:12px 20px}
@@ -16,23 +13,29 @@
     .repo-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
     .repo-title span{color:var(--accent)}
     .btn{background:#21262d;border:1px solid var(--border);color:var(--text);padding:4px 8px;border-radius:6px;cursor:pointer}
-    .panel{background:var(--panel);border:1px solid var(--border);border-radius:6px;overflow:hidden;animation:fadeIn .25s ease-out}
-    .panel-header{padding:8px 12px;border-bottom:1px solid var(--border);font-size:13px;color:var(--muted)}
+    .btn.small{padding:2px 6px;font-size:12px}
+    .btn.accent{border-color:var(--accent)}
+    .panel{background:var(--panel);border:1px solid var(--border);border-radius:6px;overflow:hidden;animation:fadeIn .2s ease-out}
+    .panel-header{display:flex;gap:8px;align-items:center;justify-content:space-between;padding:8px 12px;border-bottom:1px solid var(--border);font-size:13px;color:var(--muted)}
+    .breadcrumbs span{cursor:pointer;color:var(--accent)}
+    .breadcrumbs span.sep{color:var(--muted);cursor:default}
     table{width:100%;border-collapse:collapse}
-    tr{border-bottom:1px solid var(--border);transition:background .15s ease}
+    tr{border-bottom:1px solid var(--border);transition:background .12s ease}
     tr:hover{background:#0b0f14}
     td{padding:8px 12px;font-size:14px;vertical-align:top}
     td.name{color:var(--accent);cursor:pointer}
     td.name:hover{text-decoration:underline}
-    pre{margin:0;padding:12px;overflow:auto;background:#0b0f14;font-size:13px}
-    #viewer{margin-top:16px;display:none;animation:slideUp .25s ease-out}
-
-    /* animations */
+    td.meta{color:var(--muted);font-size:12px}
+    pre{margin:0;padding:12px;overflow:auto;background:#0b0f14;font-size:13px;line-height:1.4}
+    #viewer{margin-top:16px;display:none;animation:slideUp .2s ease-out}
+    .viewer-toolbar{display:flex;gap:8px}
+    .banner{margin:12px 0;padding:10px;border-radius:6px;border:1px solid var(--border)}
+    .banner.warn{border-color:var(--warn);color:var(--warn)}
+    .banner.error{border-color:var(--error);color:var(--error)}
+    .spinner{width:14px;height:14px;border:2px solid var(--border);border-top-color:var(--accent);border-radius:50%;animation:spin .8s linear infinite;display:inline-block}
     @keyframes fadeIn{from{opacity:0}to{opacity:1}}
-    @keyframes slideUp{from{transform:translateY(8px);opacity:0}to{transform:translateY(0);opacity:1}}
+    @keyframes slideUp{from{transform:translateY(6px);opacity:0}to{transform:translateY(0);opacity:1}}
     @keyframes spin{to{transform:rotate(360deg)}}
-
-    .spinner{width:16px;height:16px;border:2px solid var(--border);border-top-color:var(--accent);border-radius:50%;animation:spin .8s linear infinite;display:inline-block}
   </style>
 </head>
 <body>
@@ -40,103 +43,121 @@
 <main>
   <div class="repo-header">
     <div class="repo-title"><span>Bucketnight</span> / bucketkernel</div>
-    <a class="btn" href="https://github.com/torvalds/linux" target="_blank">GitHub</a>
+    <div style="display:flex;gap:8px">
+      <button class="btn small" id="back">◀</button>
+      <button class="btn small" id="forward">▶</button>
+      <a class="btn small accent" href="https://github.com/Bucketnight/bucketkernel" target="_blank">GitHub</a>
+    </div>
   </div>
 
+  <div id="banner"></div>
+
   <div class="panel">
-    <div class="panel-header" id="path">
-      <span id="crumbs">/</span>
-      <span id="loading" style="float:right;display:none" class="spinner"></span>
+    <div class="panel-header">
+      <div class="breadcrumbs" id="crumbs"></div>
+      <div id="loading" style="display:none" class="spinner"></div>
     </div>
     <table id="filelist"></table>
   </div>
 
   <div class="panel" id="viewer">
-    <div class="panel-header" id="viewer-title"></div>
+    <div class="panel-header">
+      <div id="viewer-title"></div>
+      <div class="viewer-toolbar">
+        <button class="btn small" id="raw">raw</button>
+        <button class="btn small" id="copy">copy</button>
+      </div>
+    </div>
     <pre id="viewer-content"></pre>
   </div>
 </main>
 
 <script>
-const OWNER = "torvalds";
-const REPO  = "linux";
-let currentPath = "";
-
-function $(id){ return document.getElementById(id); }
+const OWNER="Bucketnight",REPO="bucketkernel";
+let currentPath="";let historyStack=[];let historyIndex=-1;let lastFile={path:"",name:""};
+const $=id=>document.getElementById(id);
 
 async function api(path){
-  const res = await fetch(`https://api.github.com/repos/${OWNER}/${REPO}/${path}`);
+  const res=await fetch(`https://api.github.com/repos/${OWNER}/${REPO}/${path}`);
+  if(!res.ok) throw new Error(`API ${res.status}`);
   return res.json();
 }
 
-async function loadDir(path = ""){
-  currentPath = path;
-  $("path").firstChild.textContent = "/" + path;
-  $("viewer").style.display = "none";
-  $("loading").style.display = "inline-block";
+function setBanner(type,msg){
+  const b=$("banner");
+  if(!msg){b.innerHTML="";return}
+  b.innerHTML=`<div class="banner ${type}">${msg}</div>`;
+}
 
-  const items = await api(`contents/${path}`);
-  const table = $("filelist");
-  table.innerHTML = "";
+function pushHistory(path){
+  historyStack=historyStack.slice(0,historyIndex+1);
+  historyStack.push(path);historyIndex++;
+}
 
-  if(path){
-    const up = document.createElement("tr");
-    up.innerHTML = `<td class=name onclick=loadDir('${path.split('/').slice(0,-1).join('/')}')>📁 ..</td><td></td><td></td>`;
-    table.appendChild(up);
-  }
-
-  $("loading").style.display = "none";
-
-  items.forEach(i => {
-    const tr = document.createElement("tr");
-    if(i.type === "dir"){
-      tr.innerHTML = `<td class=name onclick=loadDir('${i.path}')>📁 ${i.name}</td><td>dir</td><td><button class=btn onclick=downloadFolder()>zip</button></td>`;
-    } else {
-      tr.innerHTML = `<td class=name onclick=viewFile('${i.path}','${i.name}')>📄 ${i.name}</td><td>file</td><td><button class=btn onclick=downloadFile('${i.download_url}','${i.name}')>dl</button> <button class=btn onclick=history('${i.path}')>log</button></td>`;
-    }
-    table.appendChild(tr);
+function renderCrumbs(path){
+  const el=$("crumbs");el.innerHTML="";
+  const parts=path?path.split('/'):[];
+  const root=document.createElement('span');root.textContent='/';root.onclick=()=>loadDir('');el.appendChild(root);
+  parts.forEach((p,i)=>{
+    const sep=document.createElement('span');sep.textContent=' / ';sep.className='sep';el.appendChild(sep);
+    const s=document.createElement('span');s.textContent=p;s.onclick=()=>loadDir(parts.slice(0,i+1).join('/'));el.appendChild(s);
   });
 }
 
-async function viewFile(path, name){
-  const data = await api(`contents/${path}`);
-  const text = atob(data.content.replace(/\n/g, ''));
-  const viewer = $("viewer");
-  viewer.style.display = "block";
-  viewer.style.animation = 'none';
-  viewer.offsetHeight;
-  viewer.style.animation = 'slideUp .25s ease-out';
-  $("viewer-title").textContent = name;
-  $("viewer-content").textContent = text;
+async function loadDir(path="", fromHistory=false){
+  try{
+    setBanner();
+    currentPath=path;renderCrumbs(path);
+    $("viewer").style.display='none';$("loading").style.display='inline-block';
+    if(!fromHistory) pushHistory(path);
+    const items=await api(`contents/${path}`);
+    const table=$("filelist");table.innerHTML="";
+    if(path){
+      const up=document.createElement('tr');
+      up.innerHTML=`<td class=name onclick=loadDir('${path.split('/').slice(0,-1).join('/')}')>📁 ..</td><td class=meta></td><td class=meta></td>`;
+      table.appendChild(up);
+    }
+    items.forEach(i=>{
+      const tr=document.createElement('tr');
+      if(i.type==='dir'){
+        tr.innerHTML=`<td class=name onclick=loadDir('${i.path}')>📁 ${i.name}</td><td class=meta>dir</td><td class=meta><button class="btn small" onclick=downloadFolder()>zip</button></td>`;
+      }else{
+        tr.innerHTML=`<td class=name onclick=viewFile('${i.path}','${i.name}')>📄 ${i.name}</td><td class=meta>${(i.size/1024).toFixed(1)} KB</td><td class=meta><button class="btn small" onclick=downloadFile('${i.download_url}','${i.name}')>dl</button> <button class="btn small" onclick=history('${i.path}')>log</button></td>`;
+      }
+      table.appendChild(tr);
+    });
+  }catch(e){
+    setBanner('error','Failed to load directory. You may be rate-limited.');
+  }finally{$("loading").style.display='none'}
 }
 
-function downloadFile(url, name){
-  const a = document.createElement('a');
-  a.href = url;
-  a.download = name;
-  a.click();
+async function viewFile(path,name){
+  try{
+    lastFile={path,name};
+    const data=await api(`contents/${path}`);
+    const text=atob(data.content.replace(/\n/g,''));
+    const v=$("viewer");v.style.display='block';v.style.animation='none';v.offsetHeight;v.style.animation='slideUp .2s ease-out';
+    $("viewer-title").textContent=name;$("viewer-content").textContent=text;
+  }catch(e){setBanner('warn','Unable to preview this file inline. Use raw/download.')}
 }
 
-function downloadFolder(){
-  window.open(`https://github.com/${OWNER}/${REPO}/archive/refs/heads/main.zip`, '_blank');
-}
+function downloadFile(url,name){const a=document.createElement('a');a.href=url;a.download=name;a.click();}
+function downloadFolder(){window.open(`https://github.com/${OWNER}/${REPO}/archive/refs/heads/main.zip`,'_blank');}
 
 async function history(path){
-  const commits = await api(`commits?path=${path}`);
-  let out = "";
-  commits.slice(0, 10).forEach(c => {
-    out += `${c.commit.message}\n${c.commit.author.date}\n\n`;
-  });
-  const viewer = $("viewer");
-  viewer.style.display = "block";
-  $("viewer-title").textContent = "git log " + path;
-  $("viewer-content").textContent = out;
+  try{
+    const commits=await api(`commits?path=${path}`);let out='';
+    commits.slice(0,10).forEach(c=>out+=`${c.commit.message}\n${c.commit.author.date}\n\n`);
+    $("viewer").style.display='block';$("viewer-title").textContent='git log '+path;$("viewer-content").textContent=out;
+  }catch(e){setBanner('warn','Commit history unavailable (rate limit?)')}
 }
 
-// ensure DOM is ready before accessing elements
-document.addEventListener("DOMContentLoaded", () => {
-  loadDir();
-});
+$("back").onclick=()=>{if(historyIndex>0){historyIndex--;loadDir(historyStack[historyIndex],true)}};
+$("forward").onclick=()=>{if(historyIndex<historyStack.length-1){historyIndex++;loadDir(historyStack[historyIndex],true)}};
+$("raw").onclick=()=>{if(lastFile.path) window.open(`https://raw.githubusercontent.com/${OWNER}/${REPO}/main/${lastFile.path}`,'_blank')};
+$("copy").onclick=async()=>{try{await navigator.clipboard.writeText($("viewer-content").textContent)}catch{}};
+
+document.addEventListener('DOMContentLoaded',()=>loadDir());
 </script>
 </body>
 </html>
