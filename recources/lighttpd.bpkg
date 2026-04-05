@@ -1,0 +1,13 @@
+NAME=lighttpd
+VERSION=1.4.73
+SRC=https://download.lighttpd.net/lighttpd/releases-1.4.x/lighttpd-1.4.73.tar.gz
+DEPENDENCIES=libpcre libssl zlib
+
+build() {
+    ./configure --prefix=/usr --with-openssl
+    make
+}
+
+install() {
+    make install
+}

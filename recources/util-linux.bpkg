@@ -1,0 +1,13 @@
+NAME=util-linux
+VERSION=2.39
+SRC=https://www.kernel.org/pub/linux/utils/util-linux/v2.39/util-linux-2.39.tar.xz
+DEPENDENCIES=ncurses zlib
+
+build() {
+    ./configure --prefix=/usr --disable-nls
+    make
+}
+
+install() {
+    make install
+}

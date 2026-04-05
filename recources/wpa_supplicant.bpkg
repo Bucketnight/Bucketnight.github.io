@@ -1,0 +1,15 @@
+NAME=wpa_supplicant
+VERSION=2.10
+SRC=https://w1.fi/releases/wpa_supplicant-2.10.tar.gz
+DEPENDENCIES=openssl libnl
+
+build() {
+    cd wpa_supplicant
+    cp defconfig .config
+    make
+}
+
+install() {
+    cd wpa_supplicant
+    make prefix=/usr install
+}

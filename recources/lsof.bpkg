@@ -1,0 +1,13 @@
+NAME=lsof
+VERSION=4.98.0
+SRC=https://github.com/lsof-org/lsof/archive/4.98.0.tar.gz
+DEPENDENCIES=
+
+build() {
+    ./configure --prefix=/usr
+    make
+}
+
+install() {
+    make install
+}

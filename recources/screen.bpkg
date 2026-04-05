@@ -1,0 +1,13 @@
+NAME=screen
+VERSION=4.9.1
+SRC=https://ftp.gnu.org/gnu/screen/screen-4.9.1.tar.gz
+DEPENDENCIES=ncurses
+
+build() {
+    ./configure --prefix=/usr
+    make
+}
+
+install() {
+    make install
+}

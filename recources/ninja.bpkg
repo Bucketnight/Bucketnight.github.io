@@ -1,0 +1,12 @@
+NAME=ninja
+VERSION=1.11.1
+SRC=https://github.com/ninja-build/ninja/archive/v1.11.1.tar.gz
+DEPENDENCIES=
+
+build() {
+    ./configure.py --bootstrap
+}
+
+install() {
+    cp ninja /usr/bin/
+}

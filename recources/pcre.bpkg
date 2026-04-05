@@ -1,0 +1,13 @@
+NAME=pcre
+VERSION=8.45
+SRC=https://sourceforge.net/projects/pcre/files/pcre/8.45/pcre-8.45.tar.bz2
+DEPENDENCIES=
+
+build() {
+    ./configure --prefix=/usr --enable-unicode-properties
+    make
+}
+
+install() {
+    make install
+}

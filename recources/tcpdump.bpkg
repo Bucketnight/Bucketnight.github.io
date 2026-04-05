@@ -1,0 +1,13 @@
+NAME=tcpdump
+VERSION=4.99.4
+SRC=https://www.tcpdump.org/release/tcpdump-4.99.4.tar.gz
+DEPENDENCIES=libpcap openssl
+
+build() {
+    ./configure --prefix=/usr
+    make
+}
+
+install() {
+    make install
+}

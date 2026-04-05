@@ -1,0 +1,13 @@
+NAME=snappy
+VERSION=1.1.10
+SRC=https://github.com/google/snappy/archive/1.1.10.tar.gz
+DEPENDENCIES=
+
+build() {
+    ./configure --prefix=/usr
+    make
+}
+
+install() {
+    make install
+}

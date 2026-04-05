@@ -1,0 +1,16 @@
+NAME=mesa
+VERSION=24.3.5
+SRC=https://archive.mesa3d.org/mesa-24.3.5.tar.xz
+DEPENDENCIES=libdrm libx11 libxext libxrender libxrandr libxshmfence
+
+build() {
+    mkdir build
+    cd build
+    meson setup .. --prefix=/usr
+    meson compile
+}
+
+install() {
+    cd build
+    meson install
+}

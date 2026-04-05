@@ -1,0 +1,13 @@
+NAME=sqlite
+VERSION=3.43.2
+SRC=https://www.sqlite.org/2023/sqlite-autoconf-3430200.tar.gz
+DEPENDENCIES=readline
+
+build() {
+    ./configure --prefix=/usr
+    make
+}
+
+install() {
+    make install
+}

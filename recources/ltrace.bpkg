@@ -1,0 +1,13 @@
+NAME=ltrace
+VERSION=0.7.3
+SRC=https://www.ltrace.org/ltrace_0.7.3.orig.tar.bz2
+DEPENDENCIES=
+
+build() {
+    ./configure --prefix=/usr
+    make
+}
+
+install() {
+    make install
+}

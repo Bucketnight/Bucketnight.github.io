@@ -1,0 +1,13 @@
+NAME=wget
+VERSION=1.21.4
+SRC=https://ftp.gnu.org/gnu/wget/wget-1.21.4.tar.gz
+DEPENDENCIES=openssl
+
+build() {
+    ./configure --prefix=/usr --with-ssl=openssl
+    make
+}
+
+install() {
+    make install
+}

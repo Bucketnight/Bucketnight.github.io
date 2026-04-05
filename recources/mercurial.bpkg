@@ -1,0 +1,12 @@
+NAME=mercurial
+VERSION=6.5.2
+SRC=https://www.mercurial-scm.org/release/mercurial-6.5.2.tar.gz
+DEPENDENCIES=python
+
+build() {
+    python3 setup.py build
+}
+
+install() {
+    python3 setup.py install --prefix=/usr
+}

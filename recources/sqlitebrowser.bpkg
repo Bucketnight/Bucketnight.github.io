@@ -1,0 +1,16 @@
+NAME=sqlitebrowser
+VERSION=3.40.1
+SRC=https://github.com/sqlitebrowser/sqlitebrowser/archive/v3.40.1.tar.gz
+DEPENDENCIES=sqlite qt5
+
+build() {
+    mkdir build
+    cd build
+    cmake .. -DCMAKE_INSTALL_PREFIX=/usr
+    make
+}
+
+install() {
+    cd build
+    make install
+}

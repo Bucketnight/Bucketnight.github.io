@@ -1,0 +1,13 @@
+NAME=man-db
+VERSION=2.11.2
+SRC=https://download.savannah.gnu.org/releases/man-db/man-db-2.11.2.tar.xz
+DEPENDENCIES=glib zlib
+
+build() {
+    ./configure --prefix=/usr --sysconfdir=/etc
+    make
+}
+
+install() {
+    make install
+}

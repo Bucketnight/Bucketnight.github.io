@@ -1,0 +1,12 @@
+NAME=net-tools
+VERSION=2.10
+SRC=https://downloads.sourceforge.net/project/net-tools/net-tools-2.10.tar.xz
+DEPENDENCIES=
+
+build() {
+    make
+}
+
+install() {
+    make prefix=/usr install
+}

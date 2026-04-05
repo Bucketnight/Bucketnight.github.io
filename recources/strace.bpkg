@@ -1,0 +1,13 @@
+NAME=strace
+VERSION=6.5
+SRC=https://strace.io/files/6.5/strace-6.5.tar.xz
+DEPENDENCIES=
+
+build() {
+    ./configure --prefix=/usr
+    make
+}
+
+install() {
+    make install
+}

@@ -1,0 +1,13 @@
+NAME=pixman
+VERSION=0.42.2
+SRC=https://cairographics.org/releases/pixman-0.42.2.tar.gz
+DEPENDENCIES=
+
+build() {
+    ./configure --prefix=/usr
+    make
+}
+
+install() {
+    make install
+}

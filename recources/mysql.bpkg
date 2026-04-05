@@ -1,0 +1,13 @@
+NAME=mysql
+VERSION=8.0.36
+SRC=https://dev.mysql.com/get/Downloads/MySQL-8.0/mysql-8.0.36.tar.gz
+DEPENDENCIES=openssl zlib
+
+build() {
+    cmake . -DCMAKE_INSTALL_PREFIX=/usr
+    make
+}
+
+install() {
+    make install
+}

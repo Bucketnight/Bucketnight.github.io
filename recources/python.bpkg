@@ -1,0 +1,13 @@
+NAME=python
+VERSION=3.11.6
+SRC=https://www.python.org/ftp/python/3.11.6/Python-3.11.6.tar.xz
+DEPENDENCIES=openssl libffi zlib bzip2 ncurses readline sqlite
+
+build() {
+    ./configure --prefix=/usr --enable-shared --with-system-ffi
+    make
+}
+
+install() {
+    make install
+}

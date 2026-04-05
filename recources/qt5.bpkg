@@ -1,0 +1,13 @@
+NAME=qt5
+VERSION=5.15.13
+SRC=https://download.qt.io/archive/qt/5.15/5.15.13/single/qt-everywhere-src-5.15.13.tar.xz
+DEPENDENCIES=glib libxcb libx11 libxrender libxrandr libxinerama libxcursor libxfixes libxdamage libxkbcommon fontconfig freetype libpng libjpeg
+
+build() {
+    ./configure -prefix /usr -opensource -confirm-license -nomake examples -nomake tests
+    make
+}
+
+install() {
+    make install
+}

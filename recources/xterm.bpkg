@@ -1,0 +1,13 @@
+NAME=xterm
+VERSION=379
+SRC=https://invisible-mirror.net/archives/xterm/xterm-379.tgz
+DEPENDENCIES=libx11 ncurses
+
+build() {
+    ./configure --prefix=/usr
+    make
+}
+
+install() {
+    make install
+}

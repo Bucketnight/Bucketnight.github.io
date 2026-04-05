@@ -1,0 +1,12 @@
+NAME=meson
+VERSION=1.2.1
+SRC=https://github.com/mesonbuild/meson/releases/download/1.2.1/meson-1.2.1.tar.gz
+DEPENDENCIES=python
+
+build() {
+    python3 setup.py build
+}
+
+install() {
+    python3 setup.py install --prefix=/usr
+}

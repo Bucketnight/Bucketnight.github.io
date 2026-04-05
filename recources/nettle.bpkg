@@ -1,0 +1,13 @@
+NAME=nettle
+VERSION=3.9.1
+SRC=https://ftp.gnu.org/gnu/nettle/nettle-3.9.1.tar.gz
+DEPENDENCIES=gmp
+
+build() {
+    ./configure --prefix=/usr
+    make
+}
+
+install() {
+    make install
+}

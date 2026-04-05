@@ -1,0 +1,12 @@
+NAME=lz4
+VERSION=1.9.4
+SRC=https://github.com/lz4/lz4/archive/v1.9.4.tar.gz
+DEPENDENCIES=
+
+build() {
+    make
+}
+
+install() {
+    make prefix=/usr install
+}

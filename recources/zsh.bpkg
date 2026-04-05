@@ -1,0 +1,13 @@
+NAME=zsh
+VERSION=5.9
+SRC=https://www.zsh.org/pub/zsh-5.9.tar.xz
+DEPENDENCIES=ncurses pcre
+
+build() {
+    ./configure --prefix=/usr
+    make
+}
+
+install() {
+    make install
+}

@@ -1,0 +1,13 @@
+NAME=mc
+VERSION=4.8.30
+SRC=https://ftp.midnight-commander.org/mc-4.8.30.tar.xz
+DEPENDENCIES=glib ncurses
+
+build() {
+    ./configure --prefix=/usr
+    make
+}
+
+install() {
+    make install
+}

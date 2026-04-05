@@ -1,0 +1,13 @@
+NAME=make
+VERSION=4.4.1
+SRC=https://ftp.gnu.org/gnu/make/make-4.4.1.tar.gz
+DEPENDENCIES=glibc
+
+build() {
+    ./configure --prefix=/usr --disable-nls
+    make
+}
+
+install() {
+    make install
+}

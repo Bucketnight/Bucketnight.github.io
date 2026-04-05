@@ -1,0 +1,13 @@
+NAME=postgresql
+VERSION=16.2
+SRC=https://ftp.postgresql.org/pub/source/v16.2/postgresql-16.2.tar.bz2
+DEPENDENCIES=readline zlib
+
+build() {
+    ./configure --prefix=/usr
+    make
+}
+
+install() {
+    make install
+}

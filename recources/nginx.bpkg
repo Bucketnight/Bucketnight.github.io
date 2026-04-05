@@ -1,0 +1,13 @@
+NAME=nginx
+VERSION=1.26.3
+SRC=https://nginx.org/download/nginx-1.26.3.tar.gz
+DEPENDENCIES=openssl pcre zlib
+
+build() {
+    ./configure --prefix=/usr --with-http_ssl_module --with-pcre
+    make
+}
+
+install() {
+    make install
+}

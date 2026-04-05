@@ -1,0 +1,13 @@
+NAME=pango
+VERSION=1.50.14
+SRC=https://download.gnome.org/sources/pango/1.50/pango-1.50.14.tar.xz
+DEPENDENCIES=cairo freetype fontconfig glib
+
+build() {
+    ./configure --prefix=/usr
+    make
+}
+
+install() {
+    make install
+}

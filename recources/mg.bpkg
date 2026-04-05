@@ -1,0 +1,12 @@
+NAME=mg
+VERSION=20221112
+SRC=https://github.com/hboetes/mg/archive/20221112.tar.gz
+DEPENDENCIES=ncurses
+
+build() {
+    make
+}
+
+install() {
+    make prefix=/usr install
+}

@@ -1,0 +1,13 @@
+NAME=openssl
+VERSION=3.1.4
+SRC=https://www.openssl.org/source/openssl-3.1.4.tar.gz
+DEPENDENCIES=
+
+build() {
+    ./config --prefix=/usr --openssldir=/etc/ssl shared
+    make
+}
+
+install() {
+    make install
+}

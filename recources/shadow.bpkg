@@ -1,0 +1,13 @@
+NAME=shadow
+VERSION=4.13
+SRC=https://github.com/shadow-maint/shadow/releases/download/4.13/shadow-4.13.tar.xz
+DEPENDENCIES=
+
+build() {
+    ./configure --prefix=/usr --sysconfdir=/etc
+    make
+}
+
+install() {
+    make install
+}

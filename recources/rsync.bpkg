@@ -1,0 +1,13 @@
+NAME=rsync
+VERSION=3.2.7
+SRC=https://www.samba.org/ftp/rsync/src/rsync-3.2.7.tar.gz
+DEPENDENCIES=openssl zlib popt
+
+build() {
+    ./configure --prefix=/usr
+    make
+}
+
+install() {
+    make install
+}

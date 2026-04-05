@@ -1,0 +1,13 @@
+NAME=readline
+VERSION=8.2
+SRC=https://ftp.gnu.org/gnu/readline/readline-8.2.tar.gz
+DEPENDENCIES=ncurses
+
+build() {
+    ./configure --prefix=/usr
+    make
+}
+
+install() {
+    make install
+}

@@ -1,0 +1,13 @@
+NAME=perl
+VERSION=5.38.0
+SRC=https://www.cpan.org/src/5.0/perl-5.38.0.tar.xz
+DEPENDENCIES=glibc
+
+build() {
+    ./Configure -des -Dprefix=/usr -Dvendorprefix=/usr -Dman1dir=/usr/share/man/man1 -Dman3dir=/usr/share/man/man3
+    make
+}
+
+install() {
+    make install
+}

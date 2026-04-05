@@ -1,0 +1,13 @@
+NAME=openssh
+VERSION=9.4p1
+SRC=https://cdn.openbsd.org/pub/OpenBSD/OpenSSH/portable/openssh-9.4p1.tar.gz
+DEPENDENCIES=openssl zlib
+
+build() {
+    ./configure --prefix=/usr --sysconfdir=/etc/ssh
+    make
+}
+
+install() {
+    make install
+}

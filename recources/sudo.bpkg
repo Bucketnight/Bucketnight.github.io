@@ -1,0 +1,13 @@
+NAME=sudo
+VERSION=1.9.14p3
+SRC=https://www.sudo.ws/dist/sudo-1.9.14p3.tar.gz
+DEPENDENCIES=
+
+build() {
+    ./configure --prefix=/usr
+    make
+}
+
+install() {
+    make install
+}

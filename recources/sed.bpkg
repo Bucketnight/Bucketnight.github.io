@@ -1,0 +1,13 @@
+NAME=sed
+VERSION=4.9
+SRC=https://ftp.gnu.org/gnu/sed/sed-4.9.tar.xz
+DEPENDENCIES=glibc
+
+build() {
+    ./configure --prefix=/usr --disable-nls
+    make
+}
+
+install() {
+    make install
+}

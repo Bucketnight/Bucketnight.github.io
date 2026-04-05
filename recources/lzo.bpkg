@@ -1,0 +1,13 @@
+NAME=lzo
+VERSION=2.10
+SRC=https://www.oberhumer.com/opensource/lzo/download/lzo-2.10.tar.gz
+DEPENDENCIES=
+
+build() {
+    ./configure --prefix=/usr
+    make
+}
+
+install() {
+    make install
+}

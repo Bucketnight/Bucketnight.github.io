@@ -1,0 +1,12 @@
+NAME=rtmpdump
+VERSION=2.4
+SRC=https://git.ffmpeg.org/gitweb/rtmpdump.git/snapshot/2f6bb3383ce3e32c3c18163bebe087ec026d0fc8.tar.gz
+DEPENDENCIES=openssl
+
+build() {
+    make
+}
+
+install() {
+    make prefix=/usr install
+}

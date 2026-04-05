@@ -1,0 +1,13 @@
+NAME=psmisc
+VERSION=23.6
+SRC=https://gitlab.com/psmisc/psmisc/-/archive/v23.6/psmisc-v23.6.tar.gz
+DEPENDENCIES=ncurses
+
+build() {
+    ./configure --prefix=/usr
+    make
+}
+
+install() {
+    make install
+}

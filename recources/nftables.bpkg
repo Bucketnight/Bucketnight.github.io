@@ -1,0 +1,13 @@
+NAME=nftables
+VERSION=1.0.8
+SRC=https://netfilter.org/projects/nftables/files/nftables-1.0.8.tar.xz
+DEPENDENCIES=libnftnl libmnl gmp
+
+build() {
+    ./configure --prefix=/usr
+    make
+}
+
+install() {
+    make install
+}

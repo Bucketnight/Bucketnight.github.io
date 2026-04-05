@@ -1,0 +1,13 @@
+NAME=libxslt
+VERSION=1.1.38
+SRC=https://download.gnome.org/sources/libxslt/1.1/libxslt-1.1.38.tar.xz
+DEPENDENCIES=libxml2
+
+build() {
+    ./configure --prefix=/usr
+    make
+}
+
+install() {
+    make install
+}

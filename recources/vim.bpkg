@@ -1,0 +1,13 @@
+NAME=vim
+VERSION=9.0.1677
+SRC=https://github.com/vim/vim/archive/v9.0.1677.tar.gz
+DEPENDENCIES=ncurses
+
+build() {
+    ./configure --prefix=/usr --with-features=huge --enable-multibyte
+    make
+}
+
+install() {
+    make install
+}

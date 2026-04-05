@@ -1,0 +1,13 @@
+NAME=procps
+VERSION=4.0.4
+SRC=https://gitlab.com/procps-ng/procps/-/archive/v4.0.4/procps-v4.0.4.tar.gz
+DEPENDENCIES=ncurses
+
+build() {
+    ./configure --prefix=/usr
+    make
+}
+
+install() {
+    make install
+}

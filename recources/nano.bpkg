@@ -1,0 +1,13 @@
+NAME=nano
+VERSION=7.2
+SRC=https://www.nano-editor.org/dist/v7/nano-7.2.tar.xz
+DEPENDENCIES=ncurses
+
+build() {
+    ./configure --prefix=/usr
+    make
+}
+
+install() {
+    make install
+}

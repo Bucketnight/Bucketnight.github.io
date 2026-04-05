@@ -1,0 +1,13 @@
+NAME=subversion
+VERSION=1.14.2
+SRC=https://downloads.apache.org/subversion/subversion-1.14.2.tar.bz2
+DEPENDENCIES=apr apr-util sqlite zlib
+
+build() {
+    ./configure --prefix=/usr
+    make
+}
+
+install() {
+    make install
+}

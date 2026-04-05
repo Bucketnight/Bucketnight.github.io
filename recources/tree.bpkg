@@ -1,0 +1,12 @@
+NAME=tree
+VERSION=2.1.1
+SRC=https://github.com/Old-Man-Programmer/tree/archive/2.1.1.tar.gz
+DEPENDENCIES=
+
+build() {
+    make
+}
+
+install() {
+    make prefix=/usr install
+}

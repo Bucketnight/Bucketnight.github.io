@@ -1,0 +1,13 @@
+NAME=xz
+VERSION=5.4.4
+SRC=https://tukaani.org/xz/xz-5.4.4.tar.xz
+DEPENDENCIES=glibc
+
+build() {
+    ./configure --prefix=/usr --disable-nls
+    make
+}
+
+install() {
+    make install
+}
