@@ -1,0 +1,13 @@
+NAME=libxrandr
+VERSION=1.5.3
+SRC=https://www.x.org/archive/individual/lib/libXrandr-1.5.3.tar.xz
+DEPENDENCIES=libxext libxrender
+
+build() {
+    ./configure --prefix=/usr
+    make
+}
+
+install() {
+    make install
+}

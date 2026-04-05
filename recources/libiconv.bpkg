@@ -1,0 +1,13 @@
+NAME=libiconv
+VERSION=1.17
+SRC=https://ftp.gnu.org/gnu/libiconv/libiconv-1.17.tar.gz
+DEPENDENCIES=
+
+build() {
+    ./configure --prefix=/usr
+    make
+}
+
+install() {
+    make install
+}

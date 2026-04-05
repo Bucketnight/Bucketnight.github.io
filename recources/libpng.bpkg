@@ -1,0 +1,13 @@
+NAME=libpng
+VERSION=1.6.40
+SRC=https://download.sourceforge.net/libpng/libpng-1.6.40.tar.xz
+DEPENDENCIES=zlib
+
+build() {
+    ./configure --prefix=/usr
+    make
+}
+
+install() {
+    make install
+}

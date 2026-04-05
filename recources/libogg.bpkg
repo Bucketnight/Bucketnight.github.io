@@ -1,0 +1,13 @@
+NAME=libogg
+VERSION=1.3.5
+SRC=https://github.com/xiph/ogg/releases/download/v1.3.5/libogg-1.3.5.tar.xz
+DEPENDENCIES=
+
+build() {
+    ./configure --prefix=/usr
+    make
+}
+
+install() {
+    make install
+}

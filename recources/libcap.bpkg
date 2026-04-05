@@ -1,0 +1,12 @@
+NAME=libcap
+VERSION=2.69
+SRC=https://www.kernel.org/pub/linux/libs/security/linux-privs/libcap2/libcap-2.69.tar.xz
+DEPENDENCIES=
+
+build() {
+    make
+}
+
+install() {
+    make prefix=/usr install
+}

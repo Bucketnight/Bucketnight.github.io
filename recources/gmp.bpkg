@@ -1,0 +1,13 @@
+NAME=gmp
+VERSION=6.3.0
+SRC=https://ftp.gnu.org/gnu/gmp/gmp-6.3.0.tar.xz
+DEPENDENCIES=
+
+build() {
+    ./configure --prefix=/usr
+    make
+}
+
+install() {
+    make install
+}

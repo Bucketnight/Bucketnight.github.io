@@ -1,0 +1,13 @@
+NAME=libxcb
+VERSION=1.15
+SRC=https://xcb.freedesktop.org/dist/libxcb-1.15.tar.xz
+DEPENDENCIES=libxau libxdmcp
+
+build() {
+    ./configure --prefix=/usr
+    make
+}
+
+install() {
+    make install
+}

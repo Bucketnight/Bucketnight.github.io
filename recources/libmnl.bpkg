@@ -1,0 +1,13 @@
+NAME=libmnl
+VERSION=1.0.5
+SRC=https://netfilter.org/projects/libmnl/files/libmnl-1.0.5.tar.bz2
+DEPENDENCIES=
+
+build() {
+    ./configure --prefix=/usr
+    make
+}
+
+install() {
+    make install
+}

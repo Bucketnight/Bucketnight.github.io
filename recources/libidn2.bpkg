@@ -1,0 +1,13 @@
+NAME=libidn2
+VERSION=2.3.4
+SRC=https://ftp.gnu.org/gnu/libidn/libidn2-2.3.4.tar.gz
+DEPENDENCIES=libunistring
+
+build() {
+    ./configure --prefix=/usr
+    make
+}
+
+install() {
+    make install
+}

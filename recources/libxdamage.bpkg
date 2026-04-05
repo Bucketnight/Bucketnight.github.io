@@ -1,0 +1,13 @@
+NAME=libxdamage
+VERSION=1.1.6
+SRC=https://www.x.org/archive/individual/lib/libXdamage-1.1.6.tar.xz
+DEPENDENCIES=libxfixes
+
+build() {
+    ./configure --prefix=/usr
+    make
+}
+
+install() {
+    make install
+}

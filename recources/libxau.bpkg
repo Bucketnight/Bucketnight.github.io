@@ -1,0 +1,13 @@
+NAME=libxau
+VERSION=1.0.11
+SRC=https://www.x.org/archive/individual/lib/libXau-1.0.11.tar.xz
+DEPENDENCIES=
+
+build() {
+    ./configure --prefix=/usr
+    make
+}
+
+install() {
+    make install
+}

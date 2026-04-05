@@ -1,0 +1,12 @@
+NAME=libudev0
+VERSION=0.1
+SRC=
+DEPENDENCIES=
+
+build() {
+    # Dummy package for udev compatibility in this repository
+}
+
+install() {
+    mkdir -p /usr/lib
+}

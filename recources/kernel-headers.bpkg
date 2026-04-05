@@ -1,0 +1,13 @@
+NAME=kernel-headers
+VERSION=1.0
+SRC=
+DEPENDENCIES=
+
+build() {
+    # No build needed, just install
+}
+
+install() {
+    mkdir -p /usr/include
+    cp -r include/* /usr/include/
+}

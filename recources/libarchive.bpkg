@@ -1,0 +1,13 @@
+NAME=libarchive
+VERSION=3.7.2
+SRC=https://github.com/libarchive/libarchive/releases/download/v3.7.2/libarchive-3.7.2.tar.xz
+DEPENDENCIES=zlib bzip2 xz lz4 zstd
+
+build() {
+    ./configure --prefix=/usr
+    make
+}
+
+install() {
+    make install
+}

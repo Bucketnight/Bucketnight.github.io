@@ -1,0 +1,13 @@
+NAME=libxml2
+VERSION=2.11.5
+SRC=https://download.gnome.org/sources/libxml2/2.11/libxml2-2.11.5.tar.xz
+DEPENDENCIES=
+
+build() {
+    ./configure --prefix=/usr --without-python
+    make
+}
+
+install() {
+    make install
+}

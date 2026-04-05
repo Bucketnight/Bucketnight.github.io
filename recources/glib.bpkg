@@ -1,0 +1,13 @@
+NAME=glib
+VERSION=2.76.5
+SRC=https://download.gnome.org/sources/glib/2.76/glib-2.76.5.tar.xz
+DEPENDENCIES=libffi zlib pcre gettext
+
+build() {
+    ./configure --prefix=/usr
+    make
+}
+
+install() {
+    make install
+}

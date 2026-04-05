@@ -1,0 +1,13 @@
+NAME=libgcrypt
+VERSION=1.10.2
+SRC=https://gnupg.org/ftp/gcrypt/libgcrypt/libgcrypt-1.10.2.tar.bz2
+DEPENDENCIES=libgpg-error
+
+build() {
+    ./configure --prefix=/usr
+    make
+}
+
+install() {
+    make install
+}

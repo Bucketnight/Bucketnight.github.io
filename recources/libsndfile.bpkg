@@ -1,0 +1,13 @@
+NAME=libsndfile
+VERSION=1.2.2
+SRC=https://github.com/libsndfile/libsndfile/releases/download/1.2.2/libsndfile-1.2.2.tar.xz
+DEPENDENCIES=flac libvorbis
+
+build() {
+    ./configure --prefix=/usr
+    make
+}
+
+install() {
+    make install
+}

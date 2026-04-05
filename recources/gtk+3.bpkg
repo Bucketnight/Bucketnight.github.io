@@ -1,0 +1,13 @@
+NAME=gtk+3
+VERSION=3.24.37
+SRC=https://download.gtk.org/sources/gtk+/3.24/gtk+-3.24.37.tar.xz
+DEPENDENCIES=glib pango cairom libx11 libxext libxrender libxrandr libxinerama libxcursor libxfixes libxdamage libxcomposite libxfixes libxkbcommon libxi libxrandr libgdk-pixbuf libpango fontconfig freetype
+
+build() {
+    ./configure --prefix=/usr
+    make
+}
+
+install() {
+    make install
+}

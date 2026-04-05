@@ -1,0 +1,13 @@
+NAME=libxdg-basedir
+VERSION=1.2.0
+SRC=https://github.com/niksan/xdg-basedir/releases/download/v1.2.0/xdg-basedir-1.2.0.tar.gz
+DEPENDENCIES=
+
+build() {
+    ./configure --prefix=/usr
+    make
+}
+
+install() {
+    make install
+}

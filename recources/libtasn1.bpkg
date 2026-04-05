@@ -1,0 +1,13 @@
+NAME=libtasn1
+VERSION=4.19.0
+SRC=https://ftp.gnu.org/gnu/libtasn1/libtasn1-4.19.0.tar.gz
+DEPENDENCIES=
+
+build() {
+    ./configure --prefix=/usr
+    make
+}
+
+install() {
+    make install
+}

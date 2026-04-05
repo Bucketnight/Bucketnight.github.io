@@ -1,0 +1,13 @@
+NAME=libxinerama
+VERSION=1.1.5
+SRC=https://www.x.org/archive/individual/lib/libXinerama-1.1.5.tar.xz
+DEPENDENCIES=libxext
+
+build() {
+    ./configure --prefix=/usr
+    make
+}
+
+install() {
+    make install
+}

@@ -1,0 +1,13 @@
+NAME=libffi
+VERSION=3.4.4
+SRC=https://github.com/libffi/libffi/releases/download/v3.4.4/libffi-3.4.4.tar.gz
+DEPENDENCIES=
+
+build() {
+    ./configure --prefix=/usr
+    make
+}
+
+install() {
+    make install
+}

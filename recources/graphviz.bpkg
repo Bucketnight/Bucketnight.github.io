@@ -1,0 +1,13 @@
+NAME=graphviz
+VERSION=9.0.0
+SRC=https://gitlab.com/graphviz/graphviz/-/archive/9.0.0/graphviz-9.0.0.tar.gz
+DEPENDENCIES=libpng freetype fontconfig
+
+build() {
+    ./configure --prefix=/usr
+    make
+}
+
+install() {
+    make install
+}

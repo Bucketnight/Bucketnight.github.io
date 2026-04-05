@@ -1,0 +1,13 @@
+NAME=libpciaccess
+VERSION=0.16
+SRC=https://xorg.freedesktop.org/archive/individual/lib/libpciaccess-0.16.tar.gz
+DEPENDENCIES=
+
+build() {
+    ./configure --prefix=/usr
+    make
+}
+
+install() {
+    make install
+}

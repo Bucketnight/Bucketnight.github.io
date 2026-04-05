@@ -1,0 +1,13 @@
+NAME=htop
+VERSION=3.2.2
+SRC=https://github.com/htop-dev/htop/archive/3.2.2.tar.gz
+DEPENDENCIES=ncurses
+
+build() {
+    ./configure --prefix=/usr
+    make
+}
+
+install() {
+    make install
+}

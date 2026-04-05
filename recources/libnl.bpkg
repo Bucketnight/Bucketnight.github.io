@@ -1,0 +1,13 @@
+NAME=libnl
+VERSION=3.8.0
+SRC=https://github.com/thom311/libnl/releases/download/libnl3_8_0/libnl-3.8.0.tar.gz
+DEPENDENCIES=
+
+build() {
+    ./configure --prefix=/usr
+    make
+}
+
+install() {
+    make install
+}

@@ -1,0 +1,13 @@
+NAME=libdrm
+VERSION=2.4.121
+SRC=https://dri.freedesktop.org/libdrm/libdrm-2.4.121.tar.xz
+DEPENDENCIES=libpciaccess libudev
+
+build() {
+    ./configure --prefix=/usr
+    make
+}
+
+install() {
+    make install
+}

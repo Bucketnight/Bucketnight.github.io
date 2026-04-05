@@ -1,0 +1,13 @@
+NAME=libssh2
+VERSION=1.11.0
+SRC=https://www.libssh2.org/download/libssh2-1.11.0.tar.gz
+DEPENDENCIES=openssl
+
+build() {
+    ./configure --prefix=/usr
+    make
+}
+
+install() {
+    make install
+}

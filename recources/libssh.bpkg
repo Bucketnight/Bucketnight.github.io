@@ -1,0 +1,13 @@
+NAME=libssh
+VERSION=0.10.5
+SRC=https://www.libssh.org/files/0.10/libssh-0.10.5.tar.xz
+DEPENDENCIES=openssl zlib
+
+build() {
+    ./configure --prefix=/usr
+    make
+}
+
+install() {
+    make install
+}

@@ -1,0 +1,13 @@
+NAME=libxcomposite
+VERSION=0.4.5
+SRC=https://www.x.org/archive/individual/lib/libXcomposite-0.4.5.tar.xz
+DEPENDENCIES=libx11 libxfixes
+
+build() {
+    ./configure --prefix=/usr
+    make
+}
+
+install() {
+    make install
+}

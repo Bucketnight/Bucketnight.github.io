@@ -1,0 +1,16 @@
+NAME=glibc
+VERSION=2.38
+SRC=https://ftp.gnu.org/gnu/glibc/glibc-2.38.tar.xz
+DEPENDENCIES=kernel-headers
+
+build() {
+    mkdir build
+    cd build
+    ../configure --prefix=/usr --disable-nls --enable-kernel=3.0 --with-headers=/usr/include
+    make
+}
+
+install() {
+    cd build
+    make install
+}

@@ -1,0 +1,13 @@
+NAME=gnutls
+VERSION=3.8.1
+SRC=https://www.gnupg.org/ftp/gcrypt/gnutls/v3.8/gnutls-3.8.1.tar.xz
+DEPENDENCIES=libtasn1 nettle
+
+build() {
+    ./configure --prefix=/usr
+    make
+}
+
+install() {
+    make install
+}

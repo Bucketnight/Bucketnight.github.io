@@ -1,0 +1,13 @@
+NAME=gnupg
+VERSION=2.4.3
+SRC=https://gnupg.org/ftp/gcrypt/gnupg/gnupg-2.4.3.tar.bz2
+DEPENDENCIES=libgcrypt libgpg-error libassuan
+
+build() {
+    ./configure --prefix=/usr
+    make
+}
+
+install() {
+    make install
+}

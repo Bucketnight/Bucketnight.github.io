@@ -1,0 +1,13 @@
+NAME=libnftnl
+VERSION=1.2.6
+SRC=https://netfilter.org/projects/libnftnl/files/libnftnl-1.2.6.tar.xz
+DEPENDENCIES=libmnl
+
+build() {
+    ./configure --prefix=/usr
+    make
+}
+
+install() {
+    make install
+}

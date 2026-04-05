@@ -1,0 +1,13 @@
+NAME=libelf
+VERSION=0.189
+SRC=https://sourceware.org/elfutils/ftp/0.189/elfutils-0.189.tar.bz2
+DEPENDENCIES=zlib bzip2 xz
+
+build() {
+    ./configure --prefix=/usr --disable-debuginfod
+    make
+}
+
+install() {
+    make install
+}

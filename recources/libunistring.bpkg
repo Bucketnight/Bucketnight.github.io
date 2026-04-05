@@ -1,0 +1,13 @@
+NAME=libunistring
+VERSION=1.1
+SRC=https://ftp.gnu.org/gnu/libunistring/libunistring-1.1.tar.xz
+DEPENDENCIES=
+
+build() {
+    ./configure --prefix=/usr
+    make
+}
+
+install() {
+    make install
+}

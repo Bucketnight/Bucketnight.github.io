@@ -1,0 +1,13 @@
+NAME=gzip
+VERSION=1.12
+SRC=https://ftp.gnu.org/gnu/gzip/gzip-1.12.tar.xz
+DEPENDENCIES=glibc
+
+build() {
+    ./configure --prefix=/usr --disable-nls
+    make
+}
+
+install() {
+    make install
+}

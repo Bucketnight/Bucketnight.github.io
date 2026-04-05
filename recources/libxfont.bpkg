@@ -1,0 +1,13 @@
+NAME=libxfont
+VERSION=1.5.4
+SRC=https://www.x.org/archive/individual/lib/libXfont-1.5.4.tar.xz
+DEPENDENCIES=libx11 libxrender
+
+build() {
+    ./configure --prefix=/usr
+    make
+}
+
+install() {
+    make install
+}

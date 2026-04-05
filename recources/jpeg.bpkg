@@ -1,0 +1,13 @@
+NAME=jpeg
+VERSION=9e
+SRC=https://www.ijg.org/files/jpegsrc.v9e.tar.gz
+DEPENDENCIES=
+
+build() {
+    ./configure --prefix=/usr
+    make
+}
+
+install() {
+    make install
+}

@@ -1,0 +1,13 @@
+NAME=libtiff
+VERSION=4.6.0
+SRC=https://download.osgeo.org/libtiff/tiff-4.6.0.tar.gz
+DEPENDENCIES=zlib jpeg
+
+build() {
+    ./configure --prefix=/usr
+    make
+}
+
+install() {
+    make install
+}

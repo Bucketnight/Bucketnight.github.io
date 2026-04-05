@@ -1,0 +1,13 @@
+NAME=libxcursor
+VERSION=1.2.1
+SRC=https://www.x.org/archive/individual/lib/libXcursor-1.2.1.tar.xz
+DEPENDENCIES=libxrender libxfixes
+
+build() {
+    ./configure --prefix=/usr
+    make
+}
+
+install() {
+    make install
+}

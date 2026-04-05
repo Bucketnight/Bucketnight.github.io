@@ -1,0 +1,13 @@
+NAME=libx11
+VERSION=1.8.6
+SRC=https://www.x.org/archive/individual/lib/libX11-1.8.6.tar.xz
+DEPENDENCIES=libxcb
+
+build() {
+    ./configure --prefix=/usr
+    make
+}
+
+install() {
+    make install
+}

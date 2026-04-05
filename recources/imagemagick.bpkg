@@ -1,0 +1,13 @@
+NAME=imagemagick
+VERSION=7.1.1-15
+SRC=https://github.com/ImageMagick/ImageMagick/archive/7.1.1-15.tar.gz
+DEPENDENCIES=libpng libjpeg freetype fontconfig
+
+build() {
+    ./configure --prefix=/usr
+    make
+}
+
+install() {
+    make install
+}

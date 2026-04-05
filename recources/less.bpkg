@@ -1,0 +1,13 @@
+NAME=less
+VERSION=643
+SRC=https://www.greenwoodsoftware.com/less/less-643.tar.gz
+DEPENDENCIES=ncurses
+
+build() {
+    ./configure --prefix=/usr
+    make
+}
+
+install() {
+    make install
+}

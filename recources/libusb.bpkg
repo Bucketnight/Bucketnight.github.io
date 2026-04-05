@@ -1,0 +1,13 @@
+NAME=libusb
+VERSION=1.0.26
+SRC=https://github.com/libusb/libusb/releases/download/v1.0.26/libusb-1.0.26.tar.bz2
+DEPENDENCIES=
+
+build() {
+    ./configure --prefix=/usr
+    make
+}
+
+install() {
+    make install
+}
