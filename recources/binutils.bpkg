@@ -1,0 +1,13 @@
+NAME=binutils
+VERSION=2.41
+SRC=https://ftp.gnu.org/gnu/binutils/binutils-2.41.tar.xz
+DEPENDENCIES=
+
+build() {
+    ./configure --prefix=/usr --disable-nls --disable-werror --with-sysroot=/
+    make
+}
+
+install() {
+    make install
+}

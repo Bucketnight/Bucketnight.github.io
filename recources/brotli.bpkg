@@ -1,0 +1,13 @@
+NAME=brotli
+VERSION=1.1.0
+SRC=https://github.com/google/brotli/archive/v1.1.0.tar.gz
+DEPENDENCIES=
+
+build() {
+    ./configure --prefix=/usr
+    make
+}
+
+install() {
+    make install
+}

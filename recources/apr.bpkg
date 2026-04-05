@@ -1,0 +1,13 @@
+NAME=apr
+VERSION=1.7.4
+SRC=https://downloads.apache.org/apr/apr-1.7.4.tar.bz2
+DEPENDENCIES=
+
+build() {
+    ./configure --prefix=/usr
+    make
+}
+
+install() {
+    make install
+}

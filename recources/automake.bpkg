@@ -1,0 +1,13 @@
+NAME=automake
+VERSION=1.16.5
+SRC=https://ftp.gnu.org/gnu/automake/automake-1.16.5.tar.xz
+DEPENDENCIES=autoconf
+
+build() {
+    ./configure --prefix=/usr
+    make
+}
+
+install() {
+    make install
+}

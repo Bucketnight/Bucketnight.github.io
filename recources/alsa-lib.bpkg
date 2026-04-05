@@ -1,0 +1,13 @@
+NAME=alsa-lib
+VERSION=1.2.9
+SRC=https://www.alsa-project.org/files/pub/lib/alsa-lib-1.2.9.tar.bz2
+DEPENDENCIES=
+
+build() {
+    ./configure --prefix=/usr
+    make
+}
+
+install() {
+    make install
+}

@@ -1,0 +1,13 @@
+NAME=acl
+VERSION=2.3.1
+SRC=https://download.savannah.gnu.org/releases/acl/acl-2.3.1.tar.xz
+DEPENDENCIES=attr
+
+build() {
+    ./configure --prefix=/usr
+    make
+}
+
+install() {
+    make install
+}

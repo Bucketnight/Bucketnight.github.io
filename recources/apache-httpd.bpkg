@@ -1,0 +1,13 @@
+NAME=apache-httpd
+VERSION=2.4.61
+SRC=https://downloads.apache.org/httpd/httpd-2.4.61.tar.gz
+DEPENDENCIES=apr apr-util openssl pcre
+
+build() {
+    ./configure --prefix=/usr --enable-so --enable-ssl --with-mpm=event
+    make
+}
+
+install() {
+    make install
+}

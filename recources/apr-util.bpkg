@@ -1,0 +1,13 @@
+NAME=apr-util
+VERSION=1.6.3
+SRC=https://downloads.apache.org/apr/apr-util-1.6.3.tar.bz2
+DEPENDENCIES=apr expat
+
+build() {
+    ./configure --prefix=/usr --with-apr=/usr
+    make
+}
+
+install() {
+    make install
+}

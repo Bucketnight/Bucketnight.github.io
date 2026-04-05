@@ -1,0 +1,13 @@
+NAME=bash
+VERSION=5.2.15
+SRC=https://ftp.gnu.org/gnu/bash/bash-5.2.15.tar.gz
+DEPENDENCIES=glibc
+
+build() {
+    ./configure --prefix=/usr --without-bash-malloc
+    make
+}
+
+install() {
+    make install
+}
