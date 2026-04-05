@@ -1,0 +1,13 @@
+NAME=curl
+VERSION=8.4.0
+SRC=https://curl.se/download/curl-8.4.0.tar.xz
+DEPENDENCIES=glibc
+
+build() {
+    ./configure --prefix=/usr --disable-nls --without-ssl
+    make
+}
+
+install() {
+    make install
+}

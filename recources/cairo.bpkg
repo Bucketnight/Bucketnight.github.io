@@ -1,0 +1,13 @@
+NAME=cairo
+VERSION=1.17.8
+SRC=https://cairographics.org/releases/cairo-1.17.8.tar.xz
+DEPENDENCIES=libpng freetype fontconfig pixman
+
+build() {
+    ./configure --prefix=/usr
+    make
+}
+
+install() {
+    make install
+}

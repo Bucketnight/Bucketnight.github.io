@@ -1,0 +1,14 @@
+NAME=git
+VERSION=2.42.0
+SRC=https://www.kernel.org/pub/software/scm/git/git-2.42.0.tar.xz
+DEPENDENCIES=openssl curl expat
+
+build() {
+    make configure
+    ./configure --prefix=/usr
+    make
+}
+
+install() {
+    make install
+}

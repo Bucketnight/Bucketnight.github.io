@@ -1,0 +1,13 @@
+NAME=gettext
+VERSION=0.21.1
+SRC=https://ftp.gnu.org/gnu/gettext/gettext-0.21.1.tar.xz
+DEPENDENCIES=ncurses
+
+build() {
+    ./configure --prefix=/usr --disable-java
+    make
+}
+
+install() {
+    make install
+}

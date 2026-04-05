@@ -1,0 +1,13 @@
+NAME=fontconfig
+VERSION=2.14.2
+SRC=https://www.freedesktop.org/software/fontconfig/release/fontconfig-2.14.2.tar.xz
+DEPENDENCIES=freetype expat
+
+build() {
+    ./configure --prefix=/usr --sysconfdir=/etc
+    make
+}
+
+install() {
+    make install
+}

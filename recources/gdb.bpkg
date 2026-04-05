@@ -1,0 +1,13 @@
+NAME=gdb
+VERSION=13.2
+SRC=https://ftp.gnu.org/gnu/gdb/gdb-13.2.tar.xz
+DEPENDENCIES=ncurses readline
+
+build() {
+    ./configure --prefix=/usr
+    make
+}
+
+install() {
+    make install
+}

@@ -1,0 +1,13 @@
+NAME=coreutils
+VERSION=9.4
+SRC=https://ftp.gnu.org/gnu/coreutils/coreutils-9.4.tar.xz
+DEPENDENCIES=glibc
+
+build() {
+    ./configure --prefix=/usr --disable-nls
+    make
+}
+
+install() {
+    make install
+}

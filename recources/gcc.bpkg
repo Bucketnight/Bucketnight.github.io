@@ -1,0 +1,13 @@
+NAME=gcc
+VERSION=13.2.0
+SRC=https://ftp.gnu.org/gnu/gcc/gcc-13.2.0/gcc-13.2.0.tar.xz
+DEPENDENCIES=binutils glibc
+
+build() {
+    ./configure --prefix=/usr --disable-nls --enable-languages=c --disable-multilib --with-sysroot=/
+    make
+}
+
+install() {
+    make install
+}

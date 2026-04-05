@@ -1,0 +1,13 @@
+NAME=flac
+VERSION=1.4.3
+SRC=https://github.com/xiph/flac/archive/1.4.3.tar.gz
+DEPENDENCIES=libogg
+
+build() {
+    ./configure --prefix=/usr
+    make
+}
+
+install() {
+    make install
+}

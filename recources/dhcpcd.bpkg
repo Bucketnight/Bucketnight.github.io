@@ -1,0 +1,13 @@
+NAME=dhcpcd
+VERSION=10.0.2
+SRC=https://github.com/NetworkConfiguration/dhcpcd/archive/v10.0.2.tar.gz
+DEPENDENCIES=
+
+build() {
+    ./configure --prefix=/usr
+    make
+}
+
+install() {
+    make install
+}

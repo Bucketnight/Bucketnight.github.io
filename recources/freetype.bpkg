@@ -1,0 +1,13 @@
+NAME=freetype
+VERSION=2.13.2
+SRC=https://download.savannah.gnu.org/releases/freetype/freetype-2.13.2.tar.xz
+DEPENDENCIES=zlib libpng
+
+build() {
+    ./configure --prefix=/usr
+    make
+}
+
+install() {
+    make install
+}

@@ -1,0 +1,16 @@
+NAME=doxygen
+VERSION=1.9.8
+SRC=https://github.com/doxygen/doxygen/archive/Release_1_9_8.tar.gz
+DEPENDENCIES=
+
+build() {
+    mkdir build
+    cd build
+    cmake ..
+    make
+}
+
+install() {
+    cd build
+    make install
+}

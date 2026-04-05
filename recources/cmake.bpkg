@@ -1,0 +1,13 @@
+NAME=cmake
+VERSION=3.27.7
+SRC=https://github.com/Kitware/CMake/releases/download/v3.27.7/cmake-3.27.7.tar.gz
+DEPENDENCIES=
+
+build() {
+    ./bootstrap --prefix=/usr
+    make
+}
+
+install() {
+    make install
+}

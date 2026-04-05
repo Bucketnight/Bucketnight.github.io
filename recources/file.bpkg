@@ -1,0 +1,13 @@
+NAME=file
+VERSION=5.45
+SRC=https://astron.com/pub/file/file-5.45.tar.gz
+DEPENDENCIES=zlib
+
+build() {
+    ./configure --prefix=/usr
+    make
+}
+
+install() {
+    make install
+}

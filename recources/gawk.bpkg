@@ -1,0 +1,13 @@
+NAME=gawk
+VERSION=5.2.2
+SRC=https://ftp.gnu.org/gnu/gawk/gawk-5.2.2.tar.xz
+DEPENDENCIES=glibc
+
+build() {
+    ./configure --prefix=/usr --disable-nls
+    make
+}
+
+install() {
+    make install
+}
